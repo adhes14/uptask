@@ -55,7 +55,9 @@ class LoginController {
     ]);
   }
 
-  public static function confirm() {
-    echo 'From Logout';
+  public static function confirm(Router $router) {
+    $router->render('auth/confirm', [
+      'tittle' => 'Confirm'
+    ]);
   }
 }
