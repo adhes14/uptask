@@ -39,12 +39,14 @@ class LoginController {
     ]);
   }
 
-  public static function recover() {
-    echo 'From recover password';
-
+  public static function recover(Router $router) {
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     }
+
+    $router->render('auth/recover', [
+      'tittle' => 'Recover your password'
+    ]);
   }
 
   public static function message() {
