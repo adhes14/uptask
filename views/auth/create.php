@@ -20,7 +20,7 @@
         <label for="password2">Repeat Password</label>
         <input type="password" id="password2" placeholder="Repeat your password" name="password2">
       </div>
-      <input type="submit" class="boton" value="Log In">
+      <input type="submit" class="boton" value="Create">
     </form>
 
     <div class="acciones">
