@@ -49,8 +49,10 @@ class LoginController {
     ]);
   }
 
-  public static function message() {
-    echo 'From Logout';
+  public static function message(Router $router) {
+    $router->render('auth/message', [
+      'tittle' => 'Message'
+    ]);
   }
 
   public static function confirm() {
