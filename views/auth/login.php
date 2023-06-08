@@ -1,6 +1,6 @@
 <div class="contenedor">
   <h1>UpTask</h1>
-  <p>Create and manage your projects</p>
+  <p class="tagline">Create and manage your projects</p>
 
   <div class="contenedor-sm">
     <p class="descripcion-pagina">Log In</p>
