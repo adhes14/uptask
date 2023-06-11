@@ -6,6 +6,7 @@ class ActiveRecord {
     protected static $db;
     protected static $tabla = '';
     protected static $columnasDB = [];
+    protected static $id;
 
     // Alertas y Mensajes
     protected static $alertas = [];
