@@ -1,16 +1,17 @@
 <div class="contenedor crear">
   <?php include_once __DIR__ . '/../templates/site-name.php'; ?>
-
+  
   <div class="contenedor-sm">
     <p class="descripcion-pagina">Create your account on UpTask</p>
-    <form action="/" class="formulario" method="POST">
+    <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+    <form action="/create" class="formulario" method="POST">
       <div class="campo">
         <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your name" name="name">
+        <input type="text" id="name" placeholder="Your name" name="name" value="<?php echo $usuario->name; ?>">
       </div>
       <div class="campo">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Your email" name="email">
+        <input type="email" id="email" placeholder="Your email" name="email" value="<?php echo $usuario->email; ?>">
       </div>
       <div class="campo">
         <label for="password">Password</label>
