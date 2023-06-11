@@ -35,7 +35,21 @@ class LoginController {
           Usuario::setAlerta('error', 'This user is already created');
           $alertas = Usuario::getAlertas();
         } else {
+          // Hash password
+          $usuario->hashPassword();
+
+          // Remove password2
+          unset($usuario->password2);
+
+          // Generate token
+          $usuario->crearToken();
+
           // Create user
+          $resultado = $usuario->guardar();
+
+          if ($resultado) {
+            header('Location: /message');
+          }
         }
       }
     }

@@ -20,7 +20,7 @@ class Usuario extends ActiveRecord {
     $this->password = $args['password'] ?? '';
     $this->password2 = $args['password2'] ?? '';
     $this->token = $args['token'] ?? '';
-    $this->confirm = $args['confirm'] ?? '';
+    $this->confirm = $args['confirm'] ?? 0;
   }
 
   public function validarNuevaCuenta() {
@@ -45,5 +45,16 @@ class Usuario extends ActiveRecord {
     }
   
     return self::$alertas;
+  }
+
+  public function hashPassword() {
+    $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+  }
+
+  public function crearToken() {
+    $this->token = uniqid();
+    
+    // another way more random with 32 characteres
+    // $this->token = md5(uniqid());
   }
 }
