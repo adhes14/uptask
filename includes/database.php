@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect('localhost', 'adhes', 'adhes123', 'uptask_mvc');
+$db = mysqli_connect('localhost', 'adhes', '', 'uptask_mvc');
 
 
 if (!$db) {
