@@ -23,7 +23,7 @@ class Email {
     $mail->SMTPAuth = true;
     $mail->Port = 587;
     $mail->Username = 'adhemartest708@gmail.com';
-    $mail->Password = '';
+    $mail->Password = 'javhzrjrjurctnie';
 
     $mail->setFrom('cuentas@uptask.com');
     $mail->addAddress('adhemarduran@gmail.com');

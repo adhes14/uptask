@@ -94,8 +94,25 @@ class LoginController {
   }
 
   public static function confirm(Router $router) {
+    $token = s($_GET['token']);
+    if (!$token) header('Location: /');
+
+    $usuario = Usuario::where('token', $token);
+    if (empty($usuario)) Usuario::setAlerta('error', 'Invalid token');
+    else {
+      $usuario->confirm = 1;
+      $usuario->token = null;
+      unset($usuario->password2);
+      $usuario->guardar();
+
+      Usuario::setAlerta('exito', 'User confirmed succesfully');
+    }
+
+    $alertas = Usuario::getAlertas();
+
     $router->render('auth/confirm', [
-      'tittle' => 'Confirm'
+      'tittle' => 'Confirm',
+      'alertas' => $alertas
     ]);
   }
 }
