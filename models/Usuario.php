@@ -47,6 +47,34 @@ class Usuario extends ActiveRecord {
     return self::$alertas;
   }
 
+  public function validarEmail() {
+    if (!$this->email) {
+      self::$alertas['error'][] = 'Email is mandatory';
+    }
+
+    if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+      self::$alertas['error'][] = 'Invalid email';
+    }
+
+    return self::$alertas;
+  }
+
+  public function validarPassword() {
+    if (!$this->password) {
+      self::$alertas['error'][] = 'Password cannot be empty';
+    }
+
+    if (strlen($this->password) < 6) {
+      self::$alertas['error'][] = 'Password must be at least 6 characters long';
+    }
+    
+    if ($this->password !== $this->password2) {
+      self::$alertas['error'][] = 'Passwords are not the same';
+    }
+  
+    return self::$alertas;
+  }
+
   public function hashPassword() {
     $this->password = password_hash($this->password, PASSWORD_BCRYPT);
   }

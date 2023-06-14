@@ -3,7 +3,9 @@
 
   <div class="contenedor-sm">
     <p class="descripcion-pagina">Create a new password</p>
-    <form action="/" class="formulario" method="POST">
+    <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+    <?php if ($mostrar) { ?>
+    <form class="formulario" method="POST">
       <div class="campo">
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Your password" name="password">
@@ -14,6 +16,7 @@
       </div>
       <input type="submit" class="boton" value="Create Password">
     </form>
+    <?php } ?>
 
     <div class="acciones">
       <a href="/">Log in</a>

@@ -3,7 +3,10 @@
 
   <div class="contenedor-sm">
     <p class="descripcion-pagina">Recover your password</p>
-    <form action="/" class="formulario" method="POST">
+
+    <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
+    <form action="/forgot" class="formulario" method="POST">
       <div class="campo">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Your email" name="email">
