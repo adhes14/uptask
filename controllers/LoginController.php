@@ -24,11 +24,11 @@ class LoginController {
           if (password_verify($_POST['password'], $usuario->password)) {
             session_start();
             $_SESSION['id'] = $usuario->id;
-            $_SESSION['nombre'] = $usuario->nombre;
+            $_SESSION['nombre'] = $usuario->name;
             $_SESSION['email'] = $usuario->email;
             $_SESSION['login'] = true;
-            
-            header('Location: /projects');
+
+            header('Location: /dashboard');
           } else {
             Usuario::setAlerta('error', 'Wrong password');
           }
