@@ -23,6 +23,22 @@ class Usuario extends ActiveRecord {
     $this->confirm = $args['confirm'] ?? 0;
   }
 
+  public function validarLogin() {
+    if (!$this->email) {
+      self::$alertas['error'][] = 'Email is mandatory';
+    }
+
+    if (!$this->password) {
+      self::$alertas['error'][] = 'Password cannot be empty';
+    }
+
+    if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+      self::$alertas['error'][] = 'Invalid email';
+    }
+
+    return self::$alertas;
+  }
+
   public function validarNuevaCuenta() {
     if (!$this->name) {
       self::$alertas['error'][] = 'User name is mandatory';
