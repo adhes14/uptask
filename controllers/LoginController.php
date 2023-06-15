@@ -45,7 +45,9 @@ class LoginController {
   }
 
   public static function logout() {
-    echo 'From Logout';
+    session_start();
+    $_SESSION = [];
+    header('Location: /');
   }
 
   public static function create(Router $router) {

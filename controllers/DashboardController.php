@@ -7,9 +7,28 @@ use MVC\Router;
 class DashboardController {
   public static function index(Router $router) {
     session_start();
-    
-    $router->render('dashboard/index', [
+    isAuth();
 
+    $router->render('dashboard/index', [
+      'tittle' => 'Projects'
+    ]);
+  }
+
+  public static function project(Router $router) {
+    session_start();
+    isAuth();
+
+    $router->render('dashboard/project', [
+      'tittle' => 'Create Project'
+    ]);
+  }
+
+  public static function profile(Router $router) {
+    session_start();
+    isAuth();
+
+    $router->render('dashboard/profile', [
+      'tittle' => 'Profile'
     ]);
   }
 }

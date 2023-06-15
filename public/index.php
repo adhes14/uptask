@@ -30,6 +30,8 @@ $router->get('/confirm', [LoginController::class, 'confirm']);
 
 // Projects zone
 $router->get('/dashboard', [DashboardController::class, 'index']);
+$router->get('/project', [DashboardController::class, 'project']);
+$router->get('/profile', [DashboardController::class, 'profile']);
 
 // Check if paths exists and give them controllers' methods
 $router->comprobarRutas();
