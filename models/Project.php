@@ -16,4 +16,12 @@ class Project extends ActiveRecord {
     $this->url = $args['url'] ?? '';
     $this->userId = $args['userId'] ?? '';
   }
+
+  public function validarProyecto() {
+    if (!$this->project) {
+      self::$alertas['error'][] = 'Project name is mandatory';
+    }
+
+    return self::$alertas;
+  }
 }
