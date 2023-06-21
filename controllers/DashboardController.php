@@ -10,12 +10,16 @@ class DashboardController {
     session_start();
     isAuth();
 
+    $id = $_SESSION['id'];
+    $projects = Project::belongsTo('userId', $id);
+
     $router->render('dashboard/index', [
-      'tittle' => 'Projects'
+      'tittle' => 'Projects',
+      'proyectos' => $projects
     ]);
   }
 
-  public static function project(Router $router) {
+  public static function create_project(Router $router) {
     session_start();
     isAuth();
     $alertas = [];
@@ -36,9 +40,27 @@ class DashboardController {
       }
     }
 
-    $router->render('dashboard/project', [
+    $router->render('dashboard/create-project', [
       'tittle' => 'Create Project',
       'alertas' => $alertas
+    ]);
+  }
+
+  public static function project(Router $router) {
+    session_start();
+    isAuth();
+
+    $url = $_GET['url'];
+    if (!$url) header('Location: /dashboard');
+
+    // Ensure the project if from the owner
+    $project = Project::where('url', $url);
+    if ($project->userId !== $_SESSION['id']) {
+      header('Location: /dashboard');
+    }
+
+    $router->render('dashboard/project', [
+      'tittle' => $project->project
     ]);
   }
 
