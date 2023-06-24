@@ -73,7 +73,7 @@
     let resultado;
     const datos = new FormData();
     datos.append('name', tarea);
-    datos.append('projectId', obtenerProyecto());
+    datos.append('projectUrl', obtenerProyecto());
 
     const url = 'http://localhost:3000/api/task';
     try {
@@ -87,6 +87,13 @@
     }
 
     mostrarAlerta(resultado.type, resultado.message, document.querySelector('.formulario legend'));
+
+    if (resultado.type === 'exito') {
+      const modal = document.querySelector('.modal');
+      setTimeout(() => {
+        modal.remove();
+      }, 1000);
+    }
   }
 
   function obtenerProyecto() {
