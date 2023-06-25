@@ -1,4 +1,71 @@
 (() => {
+  obtenerTareas();
+
+  async function obtenerTareas() {
+    const url = obtenerProyecto();
+    const endpoint = `/api/tasks?url=${url}`;
+  
+    let result;
+    try {
+      const response = await fetch(endpoint);
+      result = await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+
+    const { tasks } = result;
+    mostrarTareas(tasks);
+  }
+
+  function mostrarTareas(tasks) {
+    if (tasks.length === 0) {
+      const contenedorTareas = document.querySelector('#listado-tareas');
+      const textoNoTareas = document.createElement('LI');
+      textoNoTareas.textContent = 'There is no tasks';
+      textoNoTareas.classList.add('no-tareas');
+  
+      contenedorTareas.appendChild(textoNoTareas);
+      return;
+    }
+
+    const estados = {
+      0: 'Pending',
+      1: 'Complete'
+    };
+
+    tasks.forEach(tarea => {
+      const contenedorTarea = document.createElement('LI');
+      contenedorTarea.dataset.tareaId = tarea.id;
+      contenedorTarea.classList.add('tarea');
+
+      const nombreTarea = document.createElement('P');
+      nombreTarea.textContent = tarea.name;
+
+      const opcionesDiv = document.createElement('DIV');
+      opcionesDiv.classList.add('opciones');
+
+      const btnEstadoTarea = document.createElement('BUTTON');
+      btnEstadoTarea.classList.add('estado-tarea');
+      btnEstadoTarea.classList.add(estados[tarea.estado].toLowerCase());
+      btnEstadoTarea.dataset.estadoTarea = tarea.estado;
+      btnEstadoTarea.textContent = estados[tarea.estado];
+
+      const btnEliminarTarea = document.createElement('BUTTON');
+      btnEliminarTarea.classList.add('eliminar-tarea');
+      btnEliminarTarea.dataset.idTarea = tarea.id;
+      btnEliminarTarea.textContent = 'Delete';
+
+      opcionesDiv.appendChild(btnEstadoTarea);
+      opcionesDiv.appendChild(btnEliminarTarea);
+
+      contenedorTarea.appendChild(nombreTarea);
+      contenedorTarea.appendChild(opcionesDiv);
+
+      const listadoTareas = document.querySelector('#listado-tareas');
+      listadoTareas.appendChild(contenedorTarea);
+    });
+  }
+
   const nuevaTareaBtn = document.querySelector('#agregar-tarea');
   nuevaTareaBtn.addEventListener('click', mostrarFormulario);
 
