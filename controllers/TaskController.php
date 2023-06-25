@@ -40,7 +40,8 @@ class TaskController {
       $response = [
         'type' => 'exito',
         'id' => $result['id'],
-        'message' => 'Task created succesfully'
+        'message' => 'Task created succesfully',
+        'projectId' => $project->id
       ];
 
       echo json_encode($response);
